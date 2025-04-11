@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FTWR - Follow The White Rabbit</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: #00ff99;
+      font-family: 'Courier New', Courier, monospace;
+      overflow: hidden;
+    }
+    #matrix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    a {
+      color: #00ffcc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+  <div class="content">
+    <h1>Follow The White Rabbit</h1>
+    <p>You didn’t find this site by accident.<br>
+    This is a portal for those who track the unseen.<br>
+    Explore the shadows, connect the dots, follow the signal.</p>
+    <p>
+      <a href="https://reddit.com/r/FTWR" target="_blank">Reddit</a> |
+      <a href="https://discord.gg/YOUR_INVITE" target="_blank">Discord</a> |
+      <a href="https://ftwr.freeflarum.com" target="_blank">Forum</a>
+    </p>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    let letters = Array(256).join("1").split("");
+
+    const draw = () => {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#00ff99";
+      letters.map((y_pos, index) => {
+        const text = String.fromCharCode(3e4 + Math.random() * 33);
+        const x_pos = index * 10;
+        ctx.fillText(text, x_pos, y_pos);
+        letters[index] = y_pos > 758 + Math.random() * 1e4 ? 0 : y_pos + 10;
+      });
+    };
+    setInterval(draw, 33);
+  </script>
+</body>
+</html>
